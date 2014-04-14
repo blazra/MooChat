@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="topVbox" prefHeight="219.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+  <children>
+    <AnchorPane fx:id="topAnchorPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="219.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
+      <children>
+        <Label alignment="CENTER" focusTraversable="false" layoutX="14.0" layoutY="4.0" style="&#10;" text="MooChat bitchezzz" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+          <font>
+            <Font size="18.0" />
+          </font>
+        </Label><TextArea fx:id="typingArea" layoutX="168.0" layoutY="155.0" prefHeight="50.0" prefWidth="345.0">
+</TextArea><TextArea fx:id="messageArea" editable="false" focusTraversable="false" layoutX="168.0" layoutY="45.0" prefHeight="101.0" prefWidth="345.0" />
+<ImageView fx:id="superDog" fitHeight="90.0" fitWidth="86.0" layoutX="421.0" layoutY="51.0" visible="false">
+<image>
+<Image url="@../../../../Downloads/mucik.jpg" />
+</image>
+</ImageView><ListView fx:id="contactsView" focusTraversable="false" layoutX="14.0" layoutY="45.0" prefHeight="158.0" prefWidth="141.0" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
