@@ -35,25 +35,32 @@ public class Controller implements Initializable {
     private ListView<?> contactsView;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
-    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-        
-        typingArea.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    public void initialize(URL fxmlFileLocation, ResourceBundle resources)
+    {
+        typingArea.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
             final KeyCombination enterCombo = new KeyCodeCombination(KeyCode.ENTER);
-            final KeyCombination colonCombo = new KeyCodeCombination(KeyCode.COLON);
+
             public void handle(KeyEvent event)
             {
                 if(enterCombo.match(event))
                 {
-                    messageArea.setText(messageArea.getText()+" enter");
-                }
-                else if(colonCombo.match(event))
-                {
-                    messageArea.setStyle("-fx-highlight-fill: lightgray;");
-                    System.out.println("color set");
+                    typingArea.deletePreviousChar();
+
+                    if(typingArea.getText().equalsIgnoreCase("hate doge"))  //easter egg
+                        superDog.setVisible(true);
+
+                    messageArea.appendText(typingArea.getText() + "\n");
+                    Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
+                    typingArea.clear();
                 }
             }
         });
+    }
 
+    public void showMsg(String nick, String msg)
+    {
+        messageArea.appendText(msg + "\n");
     }
 
 }
