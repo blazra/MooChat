@@ -1,3 +1,3 @@
 # MooChat
 
-![Alt text](/icon.png)
+![Alt text](icon.png)
