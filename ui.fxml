@@ -18,7 +18,7 @@
 </TextArea><TextArea fx:id="messageArea" editable="false" focusTraversable="false" layoutX="168.0" layoutY="45.0" prefHeight="101.0" prefWidth="345.0" />
 <ImageView fx:id="superDog" fitHeight="90.0" fitWidth="86.0" layoutX="421.0" layoutY="51.0" visible="false">
 <image>
-<Image url="@../../../../Downloads/mucik.jpg" />
+<Image url="@mucik.jpg" />
 </image>
 </ImageView><ListView fx:id="contactsView" focusTraversable="false" layoutX="14.0" layoutY="45.0" prefHeight="158.0" prefWidth="141.0" />
       </children>

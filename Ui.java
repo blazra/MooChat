@@ -20,12 +20,12 @@ import java.net.URL;
 public class Ui extends Application {
 
     static Controller controller;
-    static String nick = "blazra";
+    static String nick = "blazra";              //TODO: @hardcoded nick
     static Server server;
 
     public static void main(String[] args)
     {
-        String mode;
+        String mode;                            //TODO: refine args processingu
         if(args.length == 0)
             mode = null;
         else

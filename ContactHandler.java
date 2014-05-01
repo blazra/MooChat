@@ -50,6 +50,11 @@ public class ContactHandler extends Thread
        
         if(theInput.equalsIgnoreCase(""))
             theOutput = "cus";
+        else if(theInput.equalsIgnoreCase("hate doge"))
+        {
+            Platform.runLater(() -> Ui.getController().superDog.setVisible(true));
+            theOutput = "OK";
+        }
         else
         {
             Platform.runLater(() -> Ui.getController().showMsg(nick, theInput));

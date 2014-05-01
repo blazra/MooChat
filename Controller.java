@@ -23,7 +23,7 @@ public class Controller implements Initializable {
     private AnchorPane topAnchorPane;
 
     @FXML
-    private ImageView superDog;
+    public ImageView superDog;
 
     @FXML
     private TextArea typingArea;
@@ -47,8 +47,8 @@ public class Controller implements Initializable {
                 {
                     typingArea.deletePreviousChar();
 
-                    if(typingArea.getText().equalsIgnoreCase("hate doge"))  //easter egg
-                        superDog.setVisible(true);
+                    //if(typingArea.getText().equalsIgnoreCase("hate doge"))  //easter egg
+                    //    superDog.setVisible(true);
 
                     messageArea.appendText(typingArea.getText() + "\n");
                     Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
