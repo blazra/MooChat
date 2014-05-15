@@ -1,7 +1,9 @@
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.time.LocalTime;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
@@ -34,9 +36,13 @@ public class Controller implements Initializable {
     @FXML
     private ListView<?> contactsView;
 
+    LocalTime time;
+
 	@Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources)
     {
+        time = LocalTime.now();
+
         typingArea.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
             final KeyCombination enterCombo = new KeyCodeCombination(KeyCode.ENTER);
@@ -60,7 +66,8 @@ public class Controller implements Initializable {
 
     public void showMsg(String nick, String msg)
     {
-        messageArea.appendText(msg + "\n");
+        messageArea.appendText("(" + time.getHour() + ":" + time.getMinute() + ":" + time.getSecond() + ") "
+            + nick + ": " + msg + "\n");
     }
 
 }

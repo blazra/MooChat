@@ -25,7 +25,7 @@ public class Ui extends Application {
 
     public static void main(String[] args)
     {
-        String mode;                            //TODO: refine args processingu
+        String mode;                            //TODO: refine args processing
         if(args.length == 0)
             mode = null;
         else
