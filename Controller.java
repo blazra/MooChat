@@ -2,6 +2,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.time.LocalTime;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.application.Platform;
@@ -34,14 +35,15 @@ public class Controller implements Initializable {
     private TextArea messageArea;
 
     @FXML
-    private ListView<?> contactsView;
+    private ListView<String> contactsView;
 
     LocalTime time;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources)
     {
-        time = LocalTime.now();
+
+        contactsView = new ListView<String>(Ui.getServer().getObservableContactList());
 
         typingArea.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
@@ -53,9 +55,6 @@ public class Controller implements Initializable {
                 {
                     typingArea.deletePreviousChar();
 
-                    //if(typingArea.getText().equalsIgnoreCase("hate doge"))  //easter egg
-                    //    superDog.setVisible(true);
-
                     messageArea.appendText(typingArea.getText() + "\n");
                     Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
                     typingArea.clear();
@@ -66,6 +65,7 @@ public class Controller implements Initializable {
 
     public void showMsg(String nick, String msg)
     {
+        time = LocalTime.now();
         messageArea.appendText("(" + time.getHour() + ":" + time.getMinute() + ":" + time.getSecond() + ") "
             + nick + ": " + msg + "\n");
     }

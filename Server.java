@@ -1,13 +1,16 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import javafx.collections.*;
  
 public class Server extends Thread
 {
     int portNumber;
     String connectionMode;
 
-    Map<String, ContactHandler> contactHandlerMap = new HashMap<String, ContactHandler>();
+    private Map<String, ContactHandler> contactHandlerMap;
+    private ObservableMap<String, ContactHandler> observableContactHandlerMap; 
+    private ObservableList<String> observableContactList;
 
     Server(int portNumber, String connectionMode)
     {
@@ -16,6 +19,10 @@ public class Server extends Thread
             this.connectionMode = connectionMode;
         else
             this.connectionMode = "";
+
+        contactHandlerMap = new HashMap<String, ContactHandler>();
+        observableContactHandlerMap = FXCollections.observableMap(contactHandlerMap);
+        observableContactList = FXCollections.observableArrayList(observableContactHandlerMap.keySet());
     }
 
     public void run()
@@ -46,7 +53,7 @@ public class Server extends Thread
             ContactHandler contactHandler = new ContactHandler(out, in, nick);
             contactHandler.start();
 
-            contactHandlerMap.put(nick, contactHandler);
+            observableContactHandlerMap.put(nick, contactHandler);
             
         }
         catch (IOException e) {
@@ -58,6 +65,11 @@ public class Server extends Thread
     public Map<String, ContactHandler> getContactHandlerMap()
     {
         return contactHandlerMap;
+    }
+
+    public ObservableList<String> getObservableContactList()
+    {
+        return observableContactList;
     }
 
 }
