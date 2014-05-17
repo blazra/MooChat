@@ -2,7 +2,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.time.LocalTime;
 
-import javafx.collections.FXCollections;
+import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.application.Platform;
@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.KeyEvent;
@@ -35,6 +36,9 @@ public class Controller implements Initializable {
     private TextArea messageArea;
 
     @FXML
+    private Button btn;
+
+    @FXML
     private ListView<String> contactsView;
 
     LocalTime time;
@@ -43,23 +47,21 @@ public class Controller implements Initializable {
     public void initialize(URL fxmlFileLocation, ResourceBundle resources)
     {
 
-        contactsView = new ListView<String>(Ui.getServer().getObservableContactList());
+        contactsView.setItems(Ui.getServer().getObservableContactList());
 
-        typingArea.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        typingArea.setOnKeyReleased( (event) -> {
 
             final KeyCombination enterCombo = new KeyCodeCombination(KeyCode.ENTER);
 
-            public void handle(KeyEvent event)
+            if(enterCombo.match(event))
             {
-                if(enterCombo.match(event))
-                {
-                    typingArea.deletePreviousChar();
+                typingArea.deletePreviousChar();
 
-                    messageArea.appendText(typingArea.getText() + "\n");
-                    Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
-                    typingArea.clear();
-                }
+                messageArea.appendText(typingArea.getText() + "\n");
+                Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
+                typingArea.clear();
             }
+            
         });
     }
 

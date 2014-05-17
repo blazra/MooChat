@@ -9,7 +9,6 @@ public class Server extends Thread
     String connectionMode;
 
     private Map<String, ContactHandler> contactHandlerMap;
-    private ObservableMap<String, ContactHandler> observableContactHandlerMap; 
     private ObservableList<String> observableContactList;
 
     Server(int portNumber, String connectionMode)
@@ -21,8 +20,7 @@ public class Server extends Thread
             this.connectionMode = "";
 
         contactHandlerMap = new HashMap<String, ContactHandler>();
-        observableContactHandlerMap = FXCollections.observableMap(contactHandlerMap);
-        observableContactList = FXCollections.observableArrayList(observableContactHandlerMap.keySet());
+        observableContactList = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
     }
 
     public void run()
@@ -53,7 +51,8 @@ public class Server extends Thread
             ContactHandler contactHandler = new ContactHandler(out, in, nick);
             contactHandler.start();
 
-            observableContactHandlerMap.put(nick, contactHandler);
+            contactHandlerMap.put(nick, contactHandler);
+            observableContactList.add(nick);
             
         }
         catch (IOException e) {

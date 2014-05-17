@@ -20,7 +20,7 @@
 <image>
 <Image url="@mucik.jpg" />
 </image>
-</ImageView><ListView fx:id="contactsView" focusTraversable="false" layoutX="14.0" layoutY="45.0" prefHeight="158.0" prefWidth="141.0" />
+</ImageView><ListView fx:id="contactsView" editable="true" focusTraversable="false" layoutX="14.0" layoutY="45.0" prefHeight="158.0" prefWidth="141.0" /><Button fx:id="btn" layoutX="451.2275390625" layoutY="12.5" mnemonicParsing="false" text="Button" />
       </children>
     </AnchorPane>
   </children>
