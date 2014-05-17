@@ -49,14 +49,13 @@ public class Controller implements Initializable {
 
         contactsView.setItems(Ui.getServer().getObservableContactList());
 
-        typingArea.setOnKeyReleased( (event) -> {
+        typingArea.setOnKeyPressed( (event) -> {
 
             final KeyCombination enterCombo = new KeyCodeCombination(KeyCode.ENTER);
 
             if(enterCombo.match(event))
             {
-                typingArea.deletePreviousChar();
-
+                event.consume();
                 messageArea.appendText(typingArea.getText() + "\n");
                 Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
                 typingArea.clear();
