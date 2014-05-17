@@ -50,17 +50,14 @@ public class Controller implements Initializable {
         contactsView.setItems(Ui.getServer().getObservableContactList());
 
         typingArea.setOnKeyPressed( (event) -> {
-
             final KeyCombination enterCombo = new KeyCodeCombination(KeyCode.ENTER);
-
             if(enterCombo.match(event))
             {
                 event.consume();
-                messageArea.appendText(typingArea.getText() + "\n");
+                showMsg(Ui.nick, typingArea.getText());
                 Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
                 typingArea.clear();
-            }
-            
+            }           
         });
     }
 
@@ -68,7 +65,7 @@ public class Controller implements Initializable {
     {
         time = LocalTime.now();
         messageArea.appendText("(" + time.getHour() + ":" + time.getMinute() + ":" + time.getSecond() + ") "
-            + nick + ": " + msg + "\n");
+            + nick + ": " + msg + "\n");            // TODO: clock format "1:1:1" to "1:01:01"
     }
 
 }
