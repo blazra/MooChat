@@ -8,9 +8,11 @@ import javafx.fxml.Initializable;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.KeyEvent;
@@ -39,6 +41,18 @@ public class Controller implements Initializable {
     private Button btn;
 
     @FXML
+    private Label serverLbl;
+
+    @FXML
+    private TextField serverTextField;
+
+    @FXML
+    private Label nickLbl;
+
+    @FXML
+    private TextField nickTextField;
+
+    @FXML
     private ListView<String> contactsView;
 
     LocalTime time;
@@ -58,6 +72,25 @@ public class Controller implements Initializable {
                 Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
                 typingArea.clear();
             }           
+        });
+
+        btn.setOnAction( (event) -> {
+            if(Ui.getStage().getHeight() > 250)
+            {
+                nickLbl.setVisible(false);
+                nickTextField.setVisible(false);
+                serverLbl.setVisible(false);
+                serverTextField.setVisible(false);
+                Ui.getStage().setHeight(240);
+            }
+            else
+            {
+                nickLbl.setVisible(true);
+                nickTextField.setVisible(true);
+                serverLbl.setVisible(true);
+                serverTextField.setVisible(true);
+                Ui.getStage().setHeight(300);
+            }
         });
     }
 

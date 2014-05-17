@@ -22,6 +22,7 @@ public class Ui extends Application {
     static Controller controller;
     static String nick = "blazra";              //TODO: @hardcoded nick
     static Server server;
+    static Stage primaryStage;
 
     public static void main(String[] args)
     {
@@ -41,6 +42,7 @@ public class Ui extends Application {
     {
         try {
 
+            Ui.primaryStage = primaryStage;
             URL location = getClass().getResource("ui.fxml");
 
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -50,25 +52,30 @@ public class Ui extends Application {
             VBox page = (VBox) fxmlLoader.load(location.openStream());
             Scene scene = new Scene(page);
 
-            controller = (Controller) fxmlLoader.getController();
+            controller = (Controller)fxmlLoader.getController();
 
-            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                public void handle(KeyEvent ke) {
-                    if(ke.getCode() == KeyCode.ESCAPE){
-                        Platform.exit();
-                    }
+            scene.setOnKeyPressed( (ke) -> {
+                if(ke.getCode() == KeyCode.ESCAPE){
+                    Platform.exit();
                 }
             });
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("MooChat");
             primaryStage.getIcons().add(new Image("file:icon.png"));
+            primaryStage.setResizable(false);
+            primaryStage.setHeight(240);
             primaryStage.show();
 
         } catch (Exception ex)
         {
             Logger.getLogger(Ui.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static Stage getStage()
+    {
+        return primaryStage;
     }
 
     public static Controller getController()

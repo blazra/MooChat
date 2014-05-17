@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="topVbox" prefHeight="219.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<VBox fx:id="topVbox" prefHeight="300.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
   <children>
-    <AnchorPane fx:id="topAnchorPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="219.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="topAnchorPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="227.0" prefWidth="527.0" VBox.vgrow="ALWAYS">
       <children>
         <Label alignment="CENTER" focusTraversable="false" layoutX="14.0" layoutY="4.0" style="&#10;" text="MooChat bitchezzz" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
           <font>
@@ -20,8 +21,23 @@
 <image>
 <Image url="@mucik.jpg" />
 </image>
-</ImageView><ListView fx:id="contactsView" editable="true" focusTraversable="false" layoutX="14.0" layoutY="45.0" prefHeight="158.0" prefWidth="141.0" /><Button fx:id="btn" layoutX="451.2275390625" layoutY="12.5" mnemonicParsing="false" text="Button" />
+</ImageView><ListView fx:id="contactsView" editable="true" focusTraversable="false" layoutX="14.0" layoutY="45.0" prefHeight="158.0" prefWidth="141.0" /><Button fx:id="btn" layoutX="441.0" layoutY="13.0" mnemonicParsing="false" text="Settings" />
       </children>
-    </AnchorPane>
+    </AnchorPane><HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="527.0" spacing="20.0">
+<children><Label fx:id="nickLbl" layoutX="68.0" layoutY="293.0" text="Nick:" visible="false" /><TextField fx:id="nickTextField" visible="false" />
+</children>
+<padding>
+<Insets right="200.0" />
+</padding></HBox><HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="527.0" spacing="20.0">
+<children>
+<Label fx:id="serverLbl" layoutX="66.964599609375" layoutY="232.5" text="Server URL:" visible="false" /><TextField fx:id="serverTextField" visible="false" />
+</children>
+<opaqueInsets>
+<Insets />
+</opaqueInsets>
+<padding>
+<Insets left="20.0" right="200.0" />
+</padding>
+</HBox>
   </children>
 </VBox>
