@@ -1,3 +1,3 @@
 # MooChat
-
-![Alt text](https://gitlab.fel.cvut.cz/B132_a0b36pr2/blazera4/raw/master/icon.png)
+[![Build Status](https://travis-ci.org/blazra/MooChat.svg?branch=master)](https://travis-ci.org/blazra/MooChat)
+![Alt text](https://raw.githubusercontent.com/blazra/MooChat/master/icon.png)
