@@ -38,6 +38,17 @@
 <padding>
 <Insets left="20.0" right="200.0" />
 </padding>
+</HBox><HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="527.0" spacing="20.0">
+<children>
+<Label fx:id="portLbl" layoutX="66.964599609375" layoutY="232.5" text="Port:" visible="false" />
+<TextField fx:id="portTextField" visible="false" />
+</children>
+<opaqueInsets>
+<Insets />
+</opaqueInsets>
+<padding>
+<Insets left="20.0" right="200.0" />
+</padding>
 </HBox>
   </children>
 </VBox>

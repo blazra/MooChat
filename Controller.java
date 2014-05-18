@@ -47,6 +47,12 @@ public class Controller implements Initializable {
     private TextField serverTextField;
 
     @FXML
+    private Label portLbl;
+
+    @FXML
+    private TextField portTextField;
+
+    @FXML
     private Label nickLbl;
 
     @FXML
@@ -75,12 +81,14 @@ public class Controller implements Initializable {
         });
 
         btn.setOnAction( (event) -> {
-            if(Ui.getStage().getHeight() > 250)
+            if(Ui.getStage().getHeight() > 240)
             {
                 nickLbl.setVisible(false);
                 nickTextField.setVisible(false);
                 serverLbl.setVisible(false);
                 serverTextField.setVisible(false);
+                portLbl.setVisible(false);
+                portTextField.setVisible(false);
                 Ui.getStage().setHeight(240);
             }
             else
@@ -89,7 +97,9 @@ public class Controller implements Initializable {
                 nickTextField.setVisible(true);
                 serverLbl.setVisible(true);
                 serverTextField.setVisible(true);
-                Ui.getStage().setHeight(300);
+                portLbl.setVisible(true);
+                portTextField.setVisible(true);
+                Ui.getStage().setHeight(350);
             }
         });
     }

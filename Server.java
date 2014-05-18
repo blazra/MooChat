@@ -50,6 +50,7 @@ public class Server extends Thread
                 String nick = in.readLine();
 
                 ContactHandler contactHandler = new ContactHandler(out, in, nick);
+                contactHandler.setDaemon(true);
                 contactHandler.start();
 
                 contactHandlerMap.put(nick, contactHandler);

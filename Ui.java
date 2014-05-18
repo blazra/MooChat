@@ -33,7 +33,9 @@ public class Ui extends Application {
             mode = args[0];
         
         server = new Server(3333, mode);
+        server.setDaemon(true);
         server.start();
+        
         Application.launch(Ui.class, (java.lang.String[])null);
     }
 
