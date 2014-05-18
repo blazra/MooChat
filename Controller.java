@@ -61,21 +61,21 @@ public class Controller implements Initializable {
     @FXML
     private ListView<String> contactsView;
 
-    LocalTime time;
+    private LocalTime time;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources)
     {
 
-        contactsView.setItems(Ui.getServer().getObservableContactList());
+        contactsView.setItems(Ui.getClient().getObservableContactList());
 
         typingArea.setOnKeyPressed( (event) -> {
             final KeyCombination enterCombo = new KeyCodeCombination(KeyCode.ENTER);
             if(enterCombo.match(event))
             {
                 event.consume();
-                showMsg(Ui.nick, typingArea.getText());
-                Ui.getServer().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
+                showMsg(Ui.getNick(), typingArea.getText());
+                Ui.getClient().getContactHandlerMap().get("blazra").sendMsg(typingArea.getText());
                 typingArea.clear();
             }           
         });

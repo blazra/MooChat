@@ -5,13 +5,13 @@ import javafx.collections.*;
  
 public class Server extends Thread
 {
-    int portNumber;
-    String connectionMode;
+    private int portNumber;
+    private String connectionMode;
 
     private Map<String, ContactHandler> contactHandlerMap;
     private ObservableList<String> observableContactList;
 
-    Server(int portNumber, String connectionMode)
+    Server(int portNumber)
     {
         this.portNumber = portNumber;
         if(connectionMode != null)
@@ -31,13 +31,8 @@ public class Server extends Thread
             {
                 Socket clientSocket;
 
-                if(connectionMode.equalsIgnoreCase("c"))    //client mode
-                    clientSocket = new Socket("localhost", portNumber);
-                else
-                {
-                    ServerSocket serverSocket = new ServerSocket(portNumber);
-                    clientSocket = serverSocket.accept();
-                }
+                ServerSocket serverSocket = new ServerSocket(portNumber);
+                clientSocket = serverSocket.accept();
 
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

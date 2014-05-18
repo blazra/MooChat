@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import java.util.prefs.Preferences;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 
@@ -19,24 +21,35 @@ import java.net.URL;
 
 public class Ui extends Application {
 
-    static Controller controller;
-    static String nick = "blazra";              //TODO: @hardcoded nick
-    static Server server;
-    static Stage primaryStage;
+    private static Controller controller;
+    private static String nick = "blazra";              //TODO: @hardcoded nick
+    private static Server server;
+    private static Client client;
+    private static Stage primaryStage;
+    private static Preferences prefs;
 
     public static void main(String[] args)
     {
-        String mode;                            //TODO: refine args processing
-        if(args.length == 0)
-            mode = null;
+        prefs = Preferences.userRoot().node("MooChat");
+
+        if(args.length != 0)
+            if(args[0].equals("s"))
+            {
+                server = new Server(5000);
+                server.setDaemon(true);
+                server.start();
+            }
+            else
+            {
+                System.out.println("Unknown parameter - use \"s\" for server mode");
+            }
         else
-            mode = args[0];
-        
-        server = new Server(3333, mode);
-        server.setDaemon(true);
-        server.start();
-        
-        Application.launch(Ui.class, (java.lang.String[])null);
+        {
+            client = new Client(prefs.get("server_URL", "localhost") ,prefs.getInt("server_port", 5000));
+            client.setDaemon(true);
+            client.start();
+            Application.launch(Ui.class, (java.lang.String[])null);
+        }
     }
 
     @Override
@@ -93,5 +106,10 @@ public class Ui extends Application {
     public static Server getServer()
     {
         return server;
+    }
+
+    public static Client getClient()
+    {
+        return client;
     }
 }
